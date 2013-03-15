@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      @font-face {
+      font-family: 'Share-TechMonoRegular';
+      src: url('clock-files/Share-TechMono-webfont.eot');
+      src: url('clock-files/Share-TechMono-webfont.eot?#iefix') format('embedded-opentype'),
+      url('clock-files/Share-TechMono-webfont.woff') format('woff'),
+      url('clock-files/Share-TechMono-webfont.ttf') format('truetype'),
+      url('clock-files/Share-TechMono-webfont.svg#Share-TechMonoRegular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      }
+
+      * { margin: 0; padding: 0; }
+      body { background-color: #000; color: #f00; }
+      ol, ul { list-style-type: none; text-align: center; }
+      ol { font-family: "Share-TechMonoRegular", sans-serif; font-size: 10em; position:relative; }
+      ul { font-size: 3em; position: relative; }
+      li { display: inline; }
+      #hours:after, #minutes:after { content: ':'; position: relative; top: -.1em; }
+      #DayOfWeek:after, #Day:after { content: ', '; }
+      #MonthName:after { content: ' '; }
+      #MonthNumber { display: none; }
+    </style>
+  </head>
+  <body>
+    <figure id="clock">
+      <ol><li id="hours"></li><li id="minutes"></li><li id="seconds"></li></ol>
+      <ul><li id="DayOfWeek">Wednesday</li><li id="MonthName">January</li><li id="MonthNumber">01</li><li id="Day">15</li><li id="Year">2013</li></ul>
+    </figure>
+    <script src="clock-files/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    // Create two variables with the names of the months and days in an array
+    var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
+    var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+    // Create a newDate() object
+    var initDate = new Date();
+    // Output the initial variables
+    $('#hours').html(initDate.getHours());
+    $('#minutes').html(initDate.getMinutes());
+    $('#seconds').html(initDate.getSeconds());
+    $('#DayOfWeek').html(dayNames[initDate.getDay()]);
+    $('#MonthName').html(monthNames[initDate.getMonth()]);
+    $('#MonthNumber').html(initDate.getMonth()+1);
+    $('#Day').html(initDate.getDate());
+    $('#Year').html(initDate.getFullYear());
+
+    setInterval( function() {
+      // Create a cDate() object that is the current local time
+      var cDate = new Date();
+      // Add a leading zero to seconds value
+      $("#seconds").html(( cDate.getSeconds() < 10 ? "0" : "" ) + cDate.getSeconds());
+      // Add a leading zero to the minutes value
+      $("#minutes").html(( cDate.getMinutes() < 10 ? "0" : "" ) + cDate.getMinutes());
+      // Add a leading zero to the hours value
+      $("#hours").html(( cDate.getHours() < 10 ? "0" : "" ) + cDate.getHours());
+      if (cDate.getDate() !== parseInt($('#Day').html())) {
+        $('#Day').html(cDate.getDate());
+        $('#DayOfWeek').html(dayNames[cDate.getDay()]);
+        $('#MonthName').html(monthNames[cDate.getMonth()]);
+        $('#MonthNumber').html(cDate.getMonth()+1);
+        $('#Year').html(cDate.getFullYear());
+        }
+        }, 1000);	
+    });
+    </script>
+  </body>
+</html>
+
