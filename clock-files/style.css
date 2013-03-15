@@ -10,7 +10,7 @@ font-style: normal;
 }
 
 * { margin: 0; padding: 0; }
-body { background-color: #000; color: #f00; }
+body { background-color: #000; color: #eee; }
 ol, ul { list-style-type: none; text-align: center; }
 ol { font-family: "Share-TechMonoRegular", sans-serif; font-size: 10em; position:relative; }
 ul { font-size: 3em; position: relative; }
