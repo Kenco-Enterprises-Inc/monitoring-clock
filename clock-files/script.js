@@ -1,7 +1,8 @@
 $(document).ready(function() {
   // Create two variables with the names of the months and days in an array
   var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
-  var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+  var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var WunderAPIKey = "dde610c5c3cd501a";
 
   function DateAndTime() {
     // Create a cDate() object that is the current local time
@@ -19,11 +20,25 @@ $(document).ready(function() {
       $('#MonthNumber').html(cDate.getMonth()+1);
       $('#Year').html(cDate.getFullYear());
       }
-  }; // end DateAndTime()
+    }; // end DateAndTime()
 
   DateAndTime();
 
   setInterval( function() {
     DateAndTime();
     }, 1000);	
+
+  function Weather() {
+    $.ajax({
+      dataType: "jsonp",
+      url: "http://api.wunderground.com/api/" + WunderAPIKey + "/conditions/q/MT/Billings.json",
+      success: function(data) {
+        $('#BIL .temperature').html(data.current_observation.temp_f);
+        $('#BIL').css("background-image", 'url("' + data.current_observation.icon_url + '")');
+        } // end anonymous function(data)
+      }); // end $.ajax()
+    }; // end Weather()
+
+  Weather();
+
   }); // end .ready()
