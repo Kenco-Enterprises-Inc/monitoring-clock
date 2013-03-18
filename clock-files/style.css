@@ -11,15 +11,24 @@ font-style: normal;
 
 * { margin: 0; padding: 0; }
 body { background-color: #000; color: #eee; }
-ol, ul { list-style-type: none; text-align: center; }
+ol,
+ul { list-style-type: none; text-align: center; }
 ol { font-family: "Share-TechMonoRegular", sans-serif; font-size: 10em; position:relative; }
 ul { font-size: 3em; position: relative; }
 li { display: inline; }
-#hours:after, #minutes:after { content: ':'; position: relative; top: -.1em; }
-#DayOfWeek:after, #Day:after { content: ', '; }
+#hours:after,
+#minutes:after { content: ':'; position: relative; top: -.1em; }
+#DayOfWeek:after,
+#Day:after { content: ', '; }
 #MonthName:after { content: ' '; }
 #MonthNumber { display: none; }
 #Temperatures { text-align: center; }
 figure { background-repeat: no-repeat; background-position-x: center; display: inline-block; min-height: 50px; min-width: 50px; }
 .temperatures { font-family: "Share-TechMonoRegular", sans-serif; font-size: 2.5em; letter-spacing: -.17em; padding-top: 50px; }
 figcaption { font-size: 1.5em; }
+#BZN,
+#COD,
+#GPI,
+#GTF,
+#HLN,
+#SHR { display: none; }
