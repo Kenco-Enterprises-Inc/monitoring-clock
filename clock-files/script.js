@@ -3,6 +3,15 @@ $(document).ready(function() {
   var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
   var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   var WunderAPIKey = "dde610c5c3cd501a";
+  var cities = {
+    'BIL': 'MT/Billings',
+    'BZN': 'MT/Bozeman',
+    'COD': 'WY/Cody',
+    'GPI': 'MT/Kalispell',
+    'GTF': 'MT/Great_Falls',
+    'HLN': 'MT/Helena',
+    'SHR': 'WY/Sheridan'
+    };
 
   function DateAndTime() {
     // Create a cDate() object that is the current local time
@@ -28,17 +37,23 @@ $(document).ready(function() {
     DateAndTime();
     }, 1000);	
 
-  function Weather() {
-    $.ajax({
-      dataType: "jsonp",
-      url: "http://api.wunderground.com/api/" + WunderAPIKey + "/conditions/q/MT/Billings.json",
-      success: function(data) {
-        $('#BIL .temperature').html(data.current_observation.temp_f);
-        $('#BIL').css("background-image", 'url("' + data.current_observation.icon_url + '")');
-        } // end anonymous function(data)
-      }); // end $.ajax()
+  function Weather(cityObj) {
+    $.each(cityObj, function(code, url) {
+      $.ajax({
+        dataType: "jsonp",
+        url: "http://api.wunderground.com/api/" + WunderAPIKey + "/conditions/q/" + url + ".json",
+        success: function(data) {
+          $('#' + code + ' .temperature').html(data.current_observation.temp_f);
+          $('#' + code).css("background-image", 'url("' + data.current_observation.icon_url + '")');
+          } // end anonymous function(data)
+        }); // end $.ajax()
+      }); // end anonymous function(code, url)
     }; // end Weather()
 
-  Weather();
+  Weather(cities);
+
+  setInterval( function() {
+    Weather();
+    }, 300000);
 
   }); // end .ready()
