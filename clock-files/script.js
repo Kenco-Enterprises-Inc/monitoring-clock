@@ -53,7 +53,7 @@ $(document).ready(function() {
   Weather(cities);
 
   setInterval( function() {
-    Weather();
+    Weather(cities);
     }, 300000);
 
   }); // end .ready()
