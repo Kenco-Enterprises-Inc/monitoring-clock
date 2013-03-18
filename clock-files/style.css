@@ -22,7 +22,7 @@ li { display: inline; }
 #Day:after { content: ', '; }
 #MonthName:after { content: ' '; }
 #MonthNumber { display: none; }
-#Temperatures { text-align: center; }
-figure { background-repeat: no-repeat; background-position-x: center; display: inline-block; min-height: 50px; min-width: 50px; }
+#Temperatures { background-color: #444; text-align: center; }
+figure { background-repeat: no-repeat; background-position-x: center; display: inline-block; min-height: 50px; min-width: 50px; margin: 0 1em; }
 .temperature { font-family: "Share-TechMonoRegular", sans-serif; font-size: 2.5em; letter-spacing: -.17em; padding-top: 50px; }
 figcaption { font-size: 1.5em; }
