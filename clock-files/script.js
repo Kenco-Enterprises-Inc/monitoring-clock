@@ -54,6 +54,6 @@ $(document).ready(function() {
 
   setInterval( function() {
     Weather(cities);
-    }, 300000);
+    }, 1800000);
 
   }); // end .ready()
